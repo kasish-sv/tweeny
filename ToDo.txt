@@ -1,0 +1,9 @@
+DB Design
+Check with Neon Auth how to store user level data
+
+Create tweeny profile creation - key skills, rating and demographics
+User profile must be very simple - google Auth
+
+if tweeny logged in - then only show tweeny profile access - to accept job request
+
+if user logged in - only show available tweeny for their task. 
