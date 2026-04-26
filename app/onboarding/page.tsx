@@ -1,0 +1,59 @@
+"use client";
+
+import * as React from "react";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { completeOnboarding } from "./_actions";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+export default function OnboardingComponent() {
+  const [error, setError] = React.useState("");
+  const { user } = useUser();
+  const router = useRouter();
+  const [role, setRole] = useState<string>("");
+
+  const handleSubmit = async (formData: FormData) => {
+    const res = await completeOnboarding(formData);
+    if (res?.message) {
+      // Forces a token refresh and refreshes the `User` object
+      await user?.reload();
+      router.push("/");
+    }
+    if (res?.error) {
+      setError(res?.error);
+    }
+  };
+  return (
+    <div className="max-w-md mx-auto mt-12 p-6 border rounded-lg shadow-sm">
+      <h1 className="text-2xl font-semibold mb-6">Welcome</h1>
+      <form action={handleSubmit} className="space-y-6">
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Choose your role
+          </label>
+          <Select onValueChange={setRole} name="role" required>
+            <SelectTrigger>
+              <SelectValue placeholder="Select a role" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="user">User</SelectItem>
+              <SelectItem value="tweeny">Tweeny</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <Button type="submit" className="w-full">
+          Continue
+        </Button>
+      </form>
+    </div>
+  );
+}
