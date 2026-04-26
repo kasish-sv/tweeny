@@ -1,9 +1,14 @@
-DB Design
-Check with Neon Auth how to store user level data
 
-Create tweeny profile creation - key skills, rating and demographics
-User profile must be very simple - google Auth
+Create tweeny profile creation - demographics like Aadhar and address saved in privateMetadata
 
 if tweeny logged in - then only show tweeny profile access - to accept job request
+if user logged in - let them log tasks
+(Menu Items should also be blocked - accept task for tweeny & request tweeny for user)
+if no logged in - then charter page similar to give
 
-if user logged in - only show available tweeny for their task. 
+Complete all DB actions in Prisma
+About page with pricing - pricing to be pulled from Wages table
+
+Log task page with all details and map location - form data
+
+Accept task page with all details in card and show data - similar to give
