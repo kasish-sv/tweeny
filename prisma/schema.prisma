@@ -16,3 +16,14 @@ model TASK_TYPE {
   TASK_NAME String   @unique
   WAGES_RATE Int
 }
+
+model Tasks {
+  task_id     Int      @id @default(autoincrement()) // INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY
+  user_id     String   // TEXT
+  tweeny_id   String   // TEXT
+  start_dt_tm DateTime // TIMESTAMP
+  end_dt_tm   DateTime // TIMESTAMP
+  wages       Decimal  // NUMERIC
+  address     String   // TEXT
+  geolocation Json     // JSON
+}
