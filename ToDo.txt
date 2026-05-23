@@ -1,7 +1,7 @@
 
 if tweeny logged in - then only show tweeny profile access - to accept job request
 if user logged in - let them log tasks
-(Menu Items should also be blocked - accept task for tweeny & request tweeny for user)
+
 if no logged in - then charter page similar to give
 
 Complete all DB actions in Prisma

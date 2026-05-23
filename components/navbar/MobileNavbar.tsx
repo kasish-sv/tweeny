@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Menu } from "lucide-react";
+import { useUser } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -14,6 +15,7 @@ import { useRouter } from "next/navigation";
 
 export function MobileNavbar() {
   const router = useRouter();
+  const { user } = useUser();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,12 +31,16 @@ export function MobileNavbar() {
         <DropdownMenuItem onSelect={() => router.push("/about")}>
           About
         </DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => router.push("/give")}>
-          Give
-        </DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => router.push("/live")}>
-          Live
-        </DropdownMenuItem>
+        {user?.publicMetadata?.onboardingComplete &&
+        user?.publicMetadata?.role === "user" ? (
+          <DropdownMenuItem onSelect={() => router.push("/log-job")}>
+            Search for a Tweeny
+          </DropdownMenuItem>
+        ) : (
+          <DropdownMenuItem onSelect={() => router.push("/accept-job")}>
+            Accept a Job
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

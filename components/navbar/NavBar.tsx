@@ -16,7 +16,10 @@ import Link from "next/link";
 import { ThemeProvider } from "next-themes";
 import { ModeToggle } from "./ThemeToggle";
 import { MobileNavbar } from "./MobileNavbar";
-export default function NavBar() {
+import { currentUser } from "@clerk/nextjs/server";
+export default async function NavBar() {
+  const user = await currentUser();
+
   return (
     <div className="flex items-center p-5 md:px-8 font-medium border-b border-gray-300 frosted-glass">
       <div className="block sm:hidden">
@@ -25,7 +28,7 @@ export default function NavBar() {
       <div className="flex-wrap gap-3 hidden sm:block">
         <NavigationMenu>
           <Link href="/" className="font-serif text-2xl italic px-3">
-            Give
+            Tweeny
           </Link>
           <NavigationMenuList>
             <NavigationMenuItem>
@@ -34,17 +37,20 @@ export default function NavBar() {
               </NavigationMenuLink>
             </NavigationMenuItem>
 
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild className="navbar-link">
-                <Link href="/give">Give</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild className="navbar-link">
-                <Link href="/live">Live</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
+            {user?.publicMetadata?.onboardingComplete &&
+            user?.publicMetadata?.role === "user" ? (
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild className="navbar-link">
+                  <Link href="/log-job">Search for a Tweeny</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ) : (
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild className="navbar-link">
+                  <Link href="/accept-job">Accept a Job</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            )}
           </NavigationMenuList>
         </NavigationMenu>
       </div>
