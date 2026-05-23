@@ -2,9 +2,13 @@ import Link from "next/link";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 
 import { useUser } from "@clerk/nextjs";
+import CharterPage from "@/components/substitutes/charter";
 export default async function Home() {
   const { isAuthenticated, userId } = await auth();
   const client = await clerkClient();
+  if (!isAuthenticated) {
+    return <CharterPage />;
+  }
   const user = await client.users.getUser(userId!);
   return (
     <div>

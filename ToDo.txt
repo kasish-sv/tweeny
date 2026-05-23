@@ -1,12 +1,4 @@
-
-if tweeny logged in - then only show tweeny profile access - to accept job request
-if user logged in - let them log tasks
-
-if no logged in - then charter page similar to give
-
 Complete all DB actions in Prisma
-About page with pricing - pricing to be pulled from Wages table
 
 Log task page with all details and map location - form data
-
 Accept task page with all details in card and show data - similar to give

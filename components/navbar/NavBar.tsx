@@ -21,7 +21,7 @@ export default async function NavBar() {
   const user = await currentUser();
 
   return (
-    <div className="flex items-center p-5 md:px-8 font-medium border-b border-gray-300 frosted-glass">
+    <div className="flex items-center p-5 md:px-8 font-medium border-b border-gray-300 tweeny-appearance">
       <div className="block sm:hidden">
         <MobileNavbar />
       </div>
@@ -38,16 +38,16 @@ export default async function NavBar() {
             </NavigationMenuItem>
 
             {user?.publicMetadata?.onboardingComplete &&
-            user?.publicMetadata?.role === "user" ? (
+            user?.publicMetadata?.role === "tweeny" ? (
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className="navbar-link">
-                  <Link href="/log-job">Search for a Tweeny</Link>
+                  <Link href="/accept-job">Accept a Job</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             ) : (
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className="navbar-link">
-                  <Link href="/accept-job">Accept a Job</Link>
+                  <Link href="/log-job">Search for a Tweeny</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             )}
@@ -58,12 +58,10 @@ export default async function NavBar() {
       <div className="flex space-x-2.5 ml-auto items-center">
         <Show when="signed-out">
           <SignInButton>
-            <Button variant="ghost" className="navbar-link cursor-pointer">
-              Sign In
-            </Button>
+            <button className="navbar-link cursor-pointer">Sign In</button>
           </SignInButton>
           <SignUpButton>
-            <button className="bg-[#6c47ff] text-ceramic-white h-8 rounded-full px-4 sm:h-12 cursor-pointer">
+            <button className="text-ceramic-white h-8 rounded-full px-4 sm:h-12 cursor-pointer">
               Sign Up
             </button>
           </SignUpButton>

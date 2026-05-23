@@ -32,13 +32,13 @@ export function MobileNavbar() {
           About
         </DropdownMenuItem>
         {user?.publicMetadata?.onboardingComplete &&
-        user?.publicMetadata?.role === "user" ? (
-          <DropdownMenuItem onSelect={() => router.push("/log-job")}>
-            Search for a Tweeny
-          </DropdownMenuItem>
-        ) : (
+        user?.publicMetadata?.role === "tweeny" ? (
           <DropdownMenuItem onSelect={() => router.push("/accept-job")}>
             Accept a Job
+          </DropdownMenuItem>
+        ) : (
+          <DropdownMenuItem onSelect={() => router.push("/log-job")}>
+            Search for a Tweeny
           </DropdownMenuItem>
         )}
       </DropdownMenuContent>
