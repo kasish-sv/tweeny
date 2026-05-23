@@ -12,13 +12,17 @@ export const completeOnboarding = async (formData: FormData) => {
   const client = await clerkClient()
 
   try {
-    const res = await client.users.updateUser(userId, {
+    await client.users.updateUser(userId, {
+      privateMetadata: {
+        aadhar: formData.get('aadhar'),
+        address: formData.get('address'),
+      },
       publicMetadata: {
         onboardingComplete: true,
         role: formData.get('role'),
       },
     })
-    return { message: res.publicMetadata }
+    return { message: 'success' }
   } catch (err) {
     return { error: 'There was an error updating the user metadata.' }
   }

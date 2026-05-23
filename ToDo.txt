@@ -1,6 +1,4 @@
 
-Create tweeny profile creation - demographics like Aadhar and address saved in privateMetadata
-
 if tweeny logged in - then only show tweeny profile access - to accept job request
 if user logged in - let them log tasks
 (Menu Items should also be blocked - accept task for tweeny & request tweeny for user)
